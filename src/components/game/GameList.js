@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect } from "react"
+import { GameContext } from "./GameProvider.js"
 
 export const GameList = (props) => {
-  return (
-      <>
-        <h1>Games</h1>
-      </>
-  )
+    const { games, getGames } = useContext(GameContext)
+
+    useEffect(() => {
+        getGames()
+    }, [])
+
+    return (
+          <>
+            {
+                games.map(game => {
+                    return <section key={`game--${game.id}`} className="game">
+                        <div className="game__edit">
+                            <button className="btn btn-3"
+                                onClick={e => props.history.push(`/games/${game.id}/edit`)}
+                            >Edit</button>
+                        </div>
+                        <div className="game__title">{game.title} by {game.maker}</div>
+                        <div className="game__players">{game.number_of_players} players needed</div>
+                        <div className="game__skillLevel">Skill level is {game.skill_level}</div>
+                    </section>
+                })
+            }
+        </>
+    )
 }
