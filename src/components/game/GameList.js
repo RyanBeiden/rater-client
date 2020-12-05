@@ -1,29 +1,43 @@
-import React, { useContext, useEffect } from "react"
-import { GameContext } from "./GameProvider.js"
+import React from "react"
+import { Link } from "react-router-dom"
+import GameProvider from "./GameProvider.js"
 
-export const GameList = (props) => {
-    const { games, getGames } = useContext(GameContext)
+import "./Game.css"
 
-    useEffect(() => {
-        getGames()
-    }, [])
+class GameList extends React.Component {
+  state = {
+    games: []
+  }
+
+  componentDidMount() {
+    GameProvider.getGames()
+      .then((res) => this.setState({ games: res }))
+  }
+
+  render() {
+    const { games } = this.state;
+
+    const gameLink = (gameId) => {
+      return `games/${gameId}`
+    }
 
     return (
-          <>
-            {
-                games.map(game => {
-                    return <section key={`game--${game.id}`} className="game">
-                        <div className="game__edit">
-                            <button className="btn btn-3"
-                                onClick={e => props.history.push(`/games/${game.id}/edit`)}
-                            >Edit</button>
-                        </div>
-                        <div className="game__title">{game.title} by {game.maker}</div>
-                        <div className="game__players">{game.number_of_players} players needed</div>
-                        <div className="game__skillLevel">Skill level is {game.skill_level}</div>
-                    </section>
-                })
-            }
-        </>
+      <div>
+        <div className="new-container">
+          <Link className="register-game" to="/">Register New Game</Link>
+        </div>
+        <div className="all-games">
+          {
+            games.map(game => {
+              return <section key={`game--${game.id}`}>
+                <Link to={gameLink(game.id)} className="game-title">{game.title}</Link>
+              </section>
+            })
+          }
+        </div>
+      </div>
     )
+  }
 }
+
+export default GameList;

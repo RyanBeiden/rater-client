@@ -1,6 +1,6 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
-import { ApplicationViews } from "./ApplicationViews"
+import ApplicationViews from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
@@ -10,7 +10,7 @@ import './GamerRater.css'
 export const GamerRater = () => (
     <>
       <Route render={() => {
-        if (localStorage.getItem("lu_token")) {
+        if (localStorage.getItem("gr_token")) {
           return <>
                   <Route render={NavBar} />
                   <Route render={props => <ApplicationViews {...props} />} />
