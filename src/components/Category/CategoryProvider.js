@@ -5,15 +5,15 @@ export const CategoryContext = React.createContext()
 export const CategoryProvider = (props) => {
   const [ categories, setCategories ] = useState([])
 
-  const getCategories = () => {
-    return fetch("http://localhost:8000/categories", {
+  const getCategories = async () => {
+    const response = await fetch("http://localhost:8000/categories", {
       method: 'GET',
-      headers:{
+      headers: {
         "Authorization": `Token ${localStorage.getItem("gr_token")}`
       }
     })
-    .then(response => response.json())
-    .then(setCategories)
+    const value = await response.json()
+    return setCategories(value)
   }
 
   return (

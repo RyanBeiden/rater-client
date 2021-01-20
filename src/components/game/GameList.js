@@ -1,43 +1,37 @@
-import React from "react"
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom"
-import GameProvider from "./GameProvider.js"
 
-import "./Game.css"
+import { GameContext } from "./GameProvider";
 
-class GameList extends React.Component {
-  state = {
-    games: []
-  }
+import "./Game.css";
 
-  componentDidMount() {
-    GameProvider.getGames()
-      .then((res) => this.setState({ games: res }))
-  }
+export const GameList = (props) => {
+  const { games, getGames } = useContext(GameContext);
 
-  render() {
-    const { games } = this.state;
+  useEffect(() => {
+    getGames();
+  }, []);
 
-    const gameLink = (gameId) => {
-      return `games/${gameId}`
-    }
+  const gameLink = (gameId) => {
+    return `games/${gameId}`
+  };
 
-    return (
-      <div>
-        <div className="new-container">
-          <Link className="register-game" to="/">Register New Game</Link>
-        </div>
-        <div className="all-games">
-          {
-            games.map(game => {
-              return <section key={`game--${game.id}`}>
-                <Link to={gameLink(game.id)} className="game-title">{game.title}</Link>
-              </section>
-            })
-          }
-        </div>
+  return (
+    <div>
+      <div className="new-container">
+        <Link className="register-game" to="games/new">Register New Game</Link>
       </div>
-    )
-  }
+      <div className="all-games">
+        {
+          games.map(game => {
+            return <section key={`game--${game.id}`}>
+              <Link to={gameLink(game.id)} className="game-title">{game.title}</Link>
+            </section>
+          })
+        }
+      </div>
+    </div>
+  );
 }
-
-export default GameList;
