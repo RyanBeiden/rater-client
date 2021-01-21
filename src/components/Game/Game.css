@@ -172,3 +172,15 @@
 	padding: 20px;
 	text-align: left;
 }
+
+.category-grid {
+	display: flex;
+	justify-content: center;
+}
+
+.category-grid p {
+	margin: 0px 10px 15px 10px;
+	padding: 5px 15px;
+	border: 2px solid #524cb6;
+	border-radius: .2em;
+}
