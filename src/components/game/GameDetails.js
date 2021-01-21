@@ -2,15 +2,18 @@
 
 import React, { useContext, useEffect } from "react";
 import { GameContext } from "./GameProvider";
+import { Link } from "react-router-dom";
 
 import "./Game.css";
 
 export const GameDetails = (props) => {
-  const { game, getSingleGame } = useContext(GameContext);
+  const { game, getSingleGame, gameReviews, getGameReviews } = useContext(GameContext);
   const { gameId } = props.match.params;
+  const reviewLink = `${gameId}/review`;
 
   useEffect(() => {
     getSingleGame(gameId);
+    getGameReviews(gameId);
   }, []);
 
   return (
@@ -27,7 +30,19 @@ export const GameDetails = (props) => {
       <div>Categories:
         {
           game.categories && game.categories.map(category => {
-            return <p key={`category--${category.category_name}`}>{category.category_name}</p>
+            return <p className="single-category" key={`category--${category.category_name}`}>{category.category_name}</p>
+          })
+        }
+      </div>
+      <hr />
+      <div className="new-container">
+        <Link className="review-button" to={reviewLink}>Review Game</Link>
+      </div>
+      <div className="game-reviews">
+        {gameReviews.length > 0 ? <h3>Reviews</h3> : ''}
+        {
+          gameReviews.map(review => {
+            return <p className="single-review" key={`review--${review.id}`}>{review.content}</p>
           })
         }
       </div>

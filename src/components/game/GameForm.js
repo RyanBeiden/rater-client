@@ -5,7 +5,7 @@ import { CategoryContext } from "../Category/CategoryProvider"
 import { GameContext } from "./GameProvider";
 
 export const GameForm = (props) => {
-  const { createGame, getSingleGame } = useContext(GameContext);
+  const { createGame } = useContext(GameContext);
   const { categories, getCategories } = useContext(CategoryContext);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export const GameForm = (props) => {
       .then((response) => props.history.push(`/games/${response.id}`));
   }
 
-  return(
+  return (
     <div className="new-game">
       <h1 style={{ textAlign: "center" }}>New Game</h1>
       <div className="form-style-5">
