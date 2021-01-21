@@ -48,7 +48,7 @@
   justify-content: center;
 }
 
-.register-game {
+.register-game, .review-button {
   text-align: center !important;
   text-decoration: none;
   color: #3c3c3c;
@@ -159,4 +159,16 @@
 .form-style-5 input[type="button"]:hover {
   background: #3e9674;
   cursor: pointer;
+}
+
+.game-reviews {
+	margin-bottom: 50px;
+}
+
+.single-review {
+	border: 2px solid #3c3c3c;
+	border-radius: .2em;
+	margin: 10px 50px;
+	padding: 20px;
+	text-align: left;
 }

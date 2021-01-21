@@ -6,7 +6,7 @@ import { GameProvider } from './Game/GameProvider';
 import { GameList } from "./Game/GameList";
 import { GameDetails } from "./Game/GameDetails";
 import { GameForm } from "./Game/GameForm";
-
+import { ReviewForm } from "./Game/ReviewForm";
 
 
 class ApplicationViews extends React.Component {
@@ -17,6 +17,7 @@ class ApplicationViews extends React.Component {
       <GameProvider>
         <Route exact path="/games" render={(props) => {return <GameList {...props} /> }} />
         <Route exact path="/games/:gameId(\d+)" render={(props) => { return <GameDetails {...props} /> }} />
+        <Route exact path="/games/:gameId(\d+)/review" render={(props) => { return <ReviewForm {...props} /> }} />
         <CategoryProvider>
           <Route exact path="/games/new" render={(props) => { return <GameForm {...props} /> }} />
         </CategoryProvider>
