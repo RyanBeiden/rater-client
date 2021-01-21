@@ -26,9 +26,9 @@ export const GameList = (props) => {
       <div className="all-games">
         {
           games.map(game => {
-            return <section key={`game--${game.id}`}>
+            return <div className="game-container" key={`game--${game.id}`}>
               <Link to={gameLink(game.id)} className="game-title">{game.title}</Link>
-            </section>
+            </div>
           })
         }
       </div>

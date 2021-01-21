@@ -36,8 +36,11 @@
 .all-games {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 50px;
+	flex-wrap: wrap;
+}
+
+.game-container {
+	margin: 40px;
 }
 
 .new-container {

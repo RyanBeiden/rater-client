@@ -26,6 +26,7 @@ export const Login = props => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "gr_token", res.token )
+                    localStorage.setItem( "gr_user_id", res.id )
                     props.history.push("/")
                 }
                 else {

@@ -8,7 +8,7 @@ export const GameProvider = (props) => {
 
   const getSingleGame = async (gameId) =>  {
     const response = await fetch(`http://localhost:8000/games/${gameId}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
         "Authorization": `Token ${localStorage.getItem("gr_token")}`
       }
@@ -19,7 +19,7 @@ export const GameProvider = (props) => {
 
   const getGames = async () => {
     const response = await fetch("http://localhost:8000/games", {
-      method: 'GET',
+      method: "GET",
       headers: {
         "Authorization": `Token ${localStorage.getItem("gr_token")}`
       }
@@ -28,8 +28,21 @@ export const GameProvider = (props) => {
     return setGames(value);
   };
 
+  const createGame = (game) => new Promise((resolve, reject) => {
+    fetch("http://localhost:8000/games", {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("gr_token")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(game)
+    })
+      .then((response) => resolve(response.json()))
+      .catch((err) => reject(err))
+  });
+
   return (
-    <GameContext.Provider value={{ game, getSingleGame, games, getGames }} >
+    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame }} >
       { props.children }
     </GameContext.Provider>
   )
