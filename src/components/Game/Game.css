@@ -6,7 +6,7 @@
 .image_container {
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
 .game-image {
@@ -14,8 +14,7 @@
   object-position: 0 25%;
   width: 100%;
   height: 275px;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #3c3c3c;
+  margin-bottom: 10px;
 }
 
 .all-games {
@@ -162,13 +161,16 @@
 }
 
 .game-reviews {
-	margin-bottom: 50px;
+	width: 50%;
+	margin: 0 auto 50px auto;
 }
 
 .single-review {
-	border: 2px solid #3c3c3c;
+	background-color: #eeeeee;
+	border-bottom: 2px solid #dddddd;
+	border-right: 2px solid #dddddd;
 	border-radius: .2em;
-	margin: 10px 50px;
+	margin: 5px 50px;
 	padding: 20px;
 	text-align: left;
 }
@@ -180,7 +182,22 @@
 
 .category-grid p {
 	margin: 0px 10px 15px 10px;
-	padding: 5px 15px;
+	padding: 10px 15px;
 	border: 2px solid #524cb6;
 	border-radius: .2em;
+}
+
+.rating-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 35%;
+	margin: 25px auto 40px auto;
+}
+
+.average-rating {
+	padding: 15px;
+}
+
+.rating-selector {
+	padding: 15px;
 }
