@@ -6,15 +6,12 @@
 .image_container {
   display: flex;
   justify-content: center;
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .game-image {
-  object-fit: cover;
-  object-position: 0 25%;
-  width: 100%;
-  height: 275px;
-  margin-bottom: 10px;
+	width: 25vh;
+  margin: 50px 0px 10px 0px;
 }
 
 .all-games {
@@ -32,6 +29,14 @@
   font-size: 1.5em;
 }
 
+.game-title:hover {
+  cursor: pointer;
+	text-decoration: none !important;
+	background-color: #413c94;
+	transition: ease-in-out 200ms;
+	color: #fff;
+}
+
 .all-games {
   display: flex;
   justify-content: center;
@@ -44,19 +49,29 @@
 
 .new-container {
   display: flex;
-  justify-content: center;
+	justify-content: center;
+	margin-top: 50px;
 }
 
 .register-game, .review-button {
   text-align: center !important;
   text-decoration: none;
-  color: #3c3c3c;
   background-color: #4cb68d;
-  border-radius: .1em;
-  padding: 18px 20px 20px 20px;
+
+  padding: 14px 20px 16px 20px;
   margin: 30px 0px;
   color: #fff;
-  font-size: 1.2em;
+	font-size: 1.2em;
+	border: 1px solid #3e9674;
+	border-width: .5px .5px 3px .5px;
+}
+
+.register-game:hover, .review-button:hover {
+  cursor: pointer !important;
+  text-decoration: none !important;
+  background-color: #3e9674 !important;
+	transition: ease-in-out 200ms !important;
+	color: #fff !important;
 }
 
 .new-game {
@@ -150,14 +165,15 @@
 	font-style: normal;
 	width: 100%;
 	border: 1px solid #3e9674;
-	border-width: 1px 1px 3px;
+	border-width: .5px .5px 3px .5px;
 	margin-bottom: 10px;
 }
 
 .form-style-5 input[type="submit"]:hover,
 .form-style-5 input[type="button"]:hover {
   background: #3e9674;
-  cursor: pointer;
+	cursor: pointer;
+	transition: ease-in-out 200ms !important;
 }
 
 .game-reviews {
@@ -182,10 +198,12 @@
 
 .category-grid p {
 	margin: 0px 10px 15px 10px;
-	padding: 10px 15px;
-	border: 2px solid #524cb6;
-	border-radius: .2em;
+	padding: 0px 5px;
+	color: #524cb6;
+	font-size: 1.2em;
+	font-weight: 600;
 }
+
 
 .rating-container {
 	display: grid;
@@ -200,4 +218,24 @@
 
 .rating-selector {
 	padding: 15px;
+}
+
+.rating-save {
+  text-align: center !important;
+  text-decoration: none;
+  background-color: #fff;
+
+  padding: 2px 12px 3px 12px;
+  margin: 30px 0px;
+  color: #343a40;
+	font-size: 1.2em;
+	border: 2px solid #343a40;
+	border-radius: .2em;
+}
+
+.rating-save:hover {
+  text-decoration: none;
+  background-color: #343a40;
+  color: #fff;
+	transition: ease-in-out 200ms;
 }

@@ -27,7 +27,22 @@
   padding: 9px 15px 10px 15px;
 }
 
-.nav-link, .nav-link:hover, .nav-link:focus, .nav-link:active {
-  cursor: pointer;
+.log-link:hover {
+  cursor: pointer !important;
   text-decoration: none !important;
+  background-color: #a74949 !important;
+	transition: ease-in-out 200ms !important;
+	color: #fff !important;
+}
+
+.navbar__item {
+  text-decoration: none !important;
+}
+
+.nav-link:hover {
+  cursor: pointer !important;
+  text-decoration: none !important;
+  background-color: #413c94 !important;
+	transition: ease-in-out 200ms !important;
+	color: #fff !important;
 }

@@ -10,7 +10,7 @@ import moment from 'moment';
 import "./Game.css";
 
 export const GameDetails = (props) => {
-  const { game, getSingleGame, gameReviews, getGameReviews } = useContext(GameContext);
+  const { game, getSingleGame, gameReviews, getGameReviews, createRating, getRating, updateRating } = useContext(GameContext);
   const { gameId } = props.match.params;
   const reviewLink = `${gameId}/review`;
 
@@ -19,7 +19,29 @@ export const GameDetails = (props) => {
     getGameReviews(gameId);
   }, []);
 
-  const [ rating, setRating ] = useState(1);
+  const [ newRating, setNewRating ] = useState(1);
+
+  const saveRating = (e) => {
+    e.preventDefault();
+    const value = parseInt(newRating);
+    const game = parseInt(gameId);
+
+    const incomingRating = {
+      value,
+      game
+    };
+
+    getRating(game)
+      .then((res) => {
+        if (res.length > 0) {
+          updateRating(res[0].id, incomingRating)
+            .then(() => getSingleGame(gameId));
+        } else if (res.length <= 0) {
+          createRating(incomingRating)
+            .then(() => getSingleGame(gameId));
+        }
+      });
+  }
 
   return (
     <div className="single-game">
@@ -28,9 +50,7 @@ export const GameDetails = (props) => {
       </div>
         <h1 style={{ marginTop: "10px" }}>{game.title}</h1>
         <h3>Designed by {game.designer} in {moment(game.year_released).format('YYYY')}</h3>
-        <p>{game.num_of_players} Players & {game.est_time_to_play} minutes to play</p>
-        <p style={{ marginBottom: "30px", paddingBottom: "10px" }}>Ages {game.age_rec} and up</p>
-      <h4 style={{ margin: "15px 0px" }}>Categories</h4>
+        <p style={{ margin: "10px 0px 20px 0px", fontSize: "1.1em" }}>{game.num_of_players} Players | {game.est_time_to_play} minutes to play | Ages {game.age_rec} and up</p>
       <div className="category-grid">
         {
           game.categories && game.categories.map(category => {
@@ -42,9 +62,9 @@ export const GameDetails = (props) => {
         <div className="average-rating">
           <h4>Average Rating</h4>
           <RangeSlider
-            value={2.5}
+            value={game.average_rating || 0}
             step={.1}
-            min={1}
+            min={0}
             max={10}
             variant="dark"
             disable={true}
@@ -54,12 +74,13 @@ export const GameDetails = (props) => {
         <div className="rating-selector">
           <h4>Pick your rating</h4>
           <RangeSlider
-            value={rating}
-            onChange={changeEvent => setRating(changeEvent.target.value)}
+            value={newRating}
+            onChange={changeEvent => setNewRating(changeEvent.target.value)}
             min={1}
             max={10}
             variant="primary"
           />
+          <button className="rating-save" onClick={saveRating}>Save</button>
         </div>
       </div>
       <hr />
