@@ -66,8 +66,43 @@ export const GameProvider = (props) => {
     return setGameReviews(value);
   };
 
+  const createRating = (rating) => new Promise((resolve, reject) => {
+    fetch("http://localhost:8000/ratings", {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("gr_token")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(rating)
+    })
+      .then((response) => resolve(response.json()))
+      .catch((err) => reject(err))
+  });
+
+  const getRating = (gameId) => new Promise ((resolve, reject) => {
+    fetch(`http://localhost:8000/ratings?game_id=${gameId}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("gr_token")}`
+      }
+    })
+      .then((response) => resolve(response.json()))
+      .catch((err) => reject(err))
+  });
+
+  const updateRating = (ratingId, newRating) => {
+    return fetch(`http://localhost:8000/ratings/${ratingId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("gr_token")}`
+        },
+        body: JSON.stringify(newRating)
+    })   
+  }
+
   return (
-    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame, createReview, gameReviews, getGameReviews }} >
+    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame, createReview, gameReviews, getGameReviews, createRating, getRating, updateRating }} >
       { props.children }
     </GameContext.Provider>
   )
