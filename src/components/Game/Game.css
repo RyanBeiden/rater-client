@@ -43,8 +43,34 @@
 	flex-wrap: wrap;
 }
 
+.search-container {
+	display: flex;
+	justify-content: center;
+	margin: 25px 0px;
+}
+
+.search-button {
+	text-decoration: none;
+  background-color: #4cb68d;
+  padding: 2px 8px 3px 8px;
+  color: #fff;
+	border: 1px solid #3e9674;
+}
+
 .game-container {
 	margin: 40px;
+	max-width: 30%;
+	border: 2px solid #343a40;
+	border-radius: .2em;
+}
+
+.game-designer {
+	margin-top: 40px;
+}
+
+.game-description {
+	padding: 7px 20px 10px 20px;
+	margin-top: 0px;
 }
 
 .new-container {
