@@ -24,10 +24,16 @@ export const GameList = (props) => {
     <div>
       <div className="new-container">
         <Link className="register-game" to="games/new">Register New Game</Link>
+        <div className="search-container">
+          <input className="search-game" onChange={changeEvent => setQuery(changeEvent.target.value)} />
+          <button type="submit" className="search-button" onClick={() => queryGames(query)}>Search</button>
+        </div>
       </div>
-      <div className="search-container">
-        <input className="search-game" onChange={changeEvent => setQuery(changeEvent.target.value)} />
-        <button type="submit" className="search-button" onClick={() => queryGames(query)}>Search</button>
+      <div className="sort-container">
+        <h6>Sort Games</h6>
+        <select>
+          <option>Test</option>
+        </select>
       </div>
       <div className="all-games">
         {
