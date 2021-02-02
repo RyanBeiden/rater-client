@@ -112,8 +112,19 @@ export const GameProvider = (props) => {
     return setGames(value);
   };
 
+  const sortGames = async (attribute) =>  {
+    const response = await fetch(`http://localhost:8000/games?orderby=${attribute}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("gr_token")}`
+      }
+    });
+    const value = await response.json();
+    return setGames(value);
+  };
+
   return (
-    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame, createReview, gameReviews, getGameReviews, createRating, getRating, updateRating, queryGames }} >
+    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame, createReview, gameReviews, getGameReviews, createRating, getRating, updateRating, queryGames, sortGames }} >
       { props.children }
     </GameContext.Provider>
   )

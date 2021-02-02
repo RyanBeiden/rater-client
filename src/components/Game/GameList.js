@@ -8,7 +8,7 @@ import { GameContext } from "./GameProvider";
 import "./Game.css";
 
 export const GameList = (props) => {
-  const { games, getGames, queryGames } = useContext(GameContext);
+  const { games, getGames, queryGames, sortGames } = useContext(GameContext);
 
   useEffect(() => {
     getGames();
@@ -27,13 +27,15 @@ export const GameList = (props) => {
         <div className="search-container">
           <input className="search-game" onChange={changeEvent => setQuery(changeEvent.target.value)} />
           <button type="submit" className="search-button" onClick={() => queryGames(query)}>Search</button>
+          <div className="sort-container">
+            <select className="sort-select" onChange={changeEvent => sortGames(changeEvent.target.value)}>
+              <option value="">Sort Games</option>
+              <option value="year_released">Year Released</option>
+              <option value="est_time_to_play">Estimated time to play</option>
+              <option value="designer">Designer</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div className="sort-container">
-        <h6>Sort Games</h6>
-        <select>
-          <option>Test</option>
-        </select>
       </div>
       <div className="all-games">
         {
