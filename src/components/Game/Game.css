@@ -44,17 +44,27 @@
 }
 
 .search-container {
-	display: flex;
-	justify-content: center;
+	align-self: center;
 	margin: 25px 0px;
 }
 
 .search-button {
 	text-decoration: none;
   background-color: #4cb68d;
-  padding: 2px 8px 3px 8px;
+  padding: 2px 8px 2px 8px;
   color: #fff;
 	border: 1px solid #3e9674;
+}
+
+.sort-container {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+	margin-right: 2px;
+}
+
+.sort-container h6 {
+	margin: 1px 15px 0px 0px;
 }
 
 .game-container {
@@ -75,12 +85,19 @@
 
 .new-container {
   display: flex;
+	justify-content: space-between;
+	margin: 50px 55px 10px 50px;
+}
+
+.review-container {
+	display: flex;
 	justify-content: center;
-	margin-top: 50px;
+	margin: 40px 60px 10px 60px;
 }
 
 .register-game, .review-button {
-  text-align: center !important;
+	text-align: center !important;
+	align-self: flex-start;
   text-decoration: none;
   background-color: #4cb68d;
 
@@ -264,4 +281,8 @@
   background-color: #343a40;
   color: #fff;
 	transition: ease-in-out 200ms;
+}
+
+.sort-select {
+	padding: 5px 10px 5px 5px;
 }

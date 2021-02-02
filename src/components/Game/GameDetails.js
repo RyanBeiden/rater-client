@@ -84,7 +84,7 @@ export const GameDetails = (props) => {
         </div>
       </div>
       <hr />
-      <div className="new-container">
+      <div className="review-container">
         <Link className="review-button" to={reviewLink}>Review Game</Link>
       </div>
       <div className="game-reviews">
