@@ -1,5 +1,6 @@
-.h1, h1 {
-    font-size: 2.5rem;
+.form--login h1, 
+.form--login h4 {
+    text-align: center;
 }
 
 fieldset {
@@ -17,7 +18,8 @@ fieldset {
 
 .form--login > fieldset > input[type="email"],
 .form--login > fieldset > input[type="password"] {
-    width: 25em;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .label--login {
@@ -44,19 +46,24 @@ fieldset {
 
 .container--login {
     text-align: center;
+    min-height: 100vh !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form--login {
     background-size: cover;
     background-position-x: center;
-    background-image: url('./logo.png');
     z-index: 1;
     min-height: 25rem;
     min-width: 45rem;
-    padding: 0 5rem;
-    background-color: hsla(0,0%,100%,0.75);
+    padding: 2rem 5rem;
+    background-color: #524cb6;
     background-blend-mode: overlay;
     background-repeat: no-repeat;
+    border-radius: .2em;
+    color: #fff;
 }
 
 .button--close {
@@ -67,4 +74,26 @@ fieldset {
 .dialog {
     min-width: 15rem;
     min-height: 5rem;
+}
+
+.login-button, .register-button {
+    text-align: center !important;
+    align-self: flex-start;
+    text-decoration: none;
+    background-color: #4cb68d;
+
+    padding: 14px 20px 16px 20px;
+    margin: 30px 0px 10px 0px;
+    color: #fff;
+    font-size: 1.2em;
+    border: 1px solid #3e9674;
+    border-width: .5px .5px 3px .5px;
+}
+
+.login-button:hover, .register-button:hover {
+    cursor: pointer !important;
+    text-decoration: none !important;
+    background-color: #3e9674 !important;
+    transition: ease-in-out 200ms !important;
+    color: #fff !important;
 }

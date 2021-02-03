@@ -48,6 +48,10 @@
 	margin: 25px 0px;
 }
 
+.form-group {
+	display: flex !important;
+}
+
 .search-button {
 	text-decoration: none;
   background-color: #4cb68d;
@@ -285,4 +289,10 @@
 
 .sort-select {
 	padding: 5px 10px 5px 5px;
+}
+
+.fa-edit {
+	font-size: .6em;
+	position: absolute;
+	margin: 0px 0px 0px 10px; 
 }

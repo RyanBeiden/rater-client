@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { GameContext } from "./GameProvider";
 
 import "./Game.css";
+import { FormControl, FormGroup } from "react-bootstrap";
 
 export const GameList = (props) => {
   const { games, getGames, queryGames, sortGames } = useContext(GameContext);
@@ -20,13 +21,25 @@ export const GameList = (props) => {
     return `games/${gameId}`
   };
 
+  const onKeyUpValue = (event) => {
+    if (event.charCode === 13) {
+      queryGames(query)
+    }
+  }
+
   return (
     <div>
       <div className="new-container">
         <Link className="register-game" to="games/new">Register New Game</Link>
         <div className="search-container">
-          <input className="search-game" onChange={changeEvent => setQuery(changeEvent.target.value)} />
-          <button type="submit" className="search-button" onClick={() => queryGames(query)}>Search</button>
+          <FormGroup>
+            <FormControl
+              className="search-game"
+              onChange={changeEvent => setQuery(changeEvent.target.value)}
+              onKeyPress={onKeyUpValue}
+            />
+            <button type="submit" className="search-button" onClick={() => queryGames(query)}>Search</button>
+          </FormGroup>
           <div className="sort-container">
             <select className="sort-select" onChange={changeEvent => sortGames(changeEvent.target.value)}>
               <option value="">Sort Games</option>

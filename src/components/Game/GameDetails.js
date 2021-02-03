@@ -48,7 +48,7 @@ export const GameDetails = (props) => {
       <div className="image-container">
         <img className="game-image" src={game.image_url} alt={game.title} />
       </div>
-        <h1 style={{ marginTop: "10px" }}>{game.title}</h1>
+        <h1 style={{ marginTop: "10px" }}>{game.title} {/* {game.player_id === parseInt(localStorage.getItem("gr_user_id")) ?  : ''} */}<i className="far fa-edit"></i></h1>
         <h3>Designed by {game.designer} in {moment(game.year_released).format('YYYY')}</h3>
         <p style={{ margin: "10px 0px 20px 0px", fontSize: "1.1em" }}>{game.num_of_players} Players | {game.est_time_to_play} minutes to play | Ages {game.age_rec} and up</p>
       <div className="category-grid">
