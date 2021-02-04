@@ -123,8 +123,32 @@ export const GameProvider = (props) => {
     return setGames(value);
   };
 
+  const updateGame = async (gameId, game) => {
+    const result = await fetch(`http://localhost:8000/games/${gameId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("gr_token")}`
+      },
+      body: JSON.stringify(game)
+    });
+    return result.url.split('/')[4];    
+  }
+
+  const deleteGame = (gameId) => new Promise((resolve, reject) => {
+    fetch(`http://localhost:8000/games/${gameId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("gr_token")}`
+    }    
+    })
+    .then(() => resolve())
+    .catch((err) => reject(err))
+  });
+
   return (
-    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame, createReview, gameReviews, getGameReviews, createRating, getRating, updateRating, queryGames, sortGames }} >
+    <GameContext.Provider value={{ game, getSingleGame, games, getGames, createGame, createReview, gameReviews, getGameReviews, createRating, getRating, updateRating, queryGames, sortGames, updateGame, deleteGame }} >
       { props.children }
     </GameContext.Provider>
   )

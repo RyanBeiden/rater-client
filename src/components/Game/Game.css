@@ -292,7 +292,24 @@
 }
 
 .fa-edit {
-	font-size: .6em;
+	font-size: .5em;
 	position: absolute;
 	margin: 0px 0px 0px 10px; 
+	color: #3c3c3c;
+}
+
+.delete-button {
+  background-color: #bb5252 !important;
+  border-radius: .2em;
+  color: rgb(225, 225, 225);
+	padding: 9px 15px 10px 15px;
+	border: none;
+}
+
+.delete-button:hover {
+  cursor: pointer !important;
+  text-decoration: none !important;
+  background-color: #a74949 !important;
+	transition: ease-in-out 200ms !important;
+	color: #fff !important;
 }
