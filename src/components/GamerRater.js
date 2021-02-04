@@ -1,9 +1,9 @@
 import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import ApplicationViews from "./ApplicationViews"
-import { NavBar } from "./nav/NavBar"
-import { Login } from "./auth/Login"
-import { Register } from "./auth/Register"
+import { NavBar } from "./Nav/NavBar"
+import { Login } from "./Auth/Login"
+import { Register } from "./Auth/Register"
 
 import './GamerRater.css'
 

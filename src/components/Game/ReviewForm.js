@@ -37,7 +37,7 @@ export const ReviewForm = (props) => {
     <div className="new-game">
       <h1 style={{ textAlign: "center" }}>Review {game.title}</h1>
       <div className="form-style-5">
-        <form style={{ minWidth: "500px" }}>
+        <form style={{ minWidth: "450px" }}>
           <textarea name="content" placeholder="Write your review" onChange={handleInputChange} required />
           <input type="submit" value="Save" onClick={saveReview} />
         </form>

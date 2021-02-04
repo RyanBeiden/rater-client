@@ -10,9 +10,10 @@ import moment from 'moment';
 import "./Game.css";
 
 export const GameDetails = (props) => {
-  const { game, getSingleGame, gameReviews, getGameReviews, createRating, getRating, updateRating } = useContext(GameContext);
+  const { game, getSingleGame, gameReviews, getGameReviews, createRating, getRating, updateRating, deleteGame } = useContext(GameContext);
   const { gameId } = props.match.params;
   const reviewLink = `${gameId}/review`;
+  const editLink = `${gameId}/edit`;
 
   useEffect(() => {
     getSingleGame(gameId);
@@ -43,12 +44,20 @@ export const GameDetails = (props) => {
       });
   }
 
+  const deleteSingleGame = (e) => {
+    e.preventDefault();
+    deleteGame(gameId)
+      .then(() => props.history.push('/games'))
+  }
+
   return (
     <div className="single-game">
       <div className="image-container">
         <img className="game-image" src={game.image_url} alt={game.title} />
       </div>
-        <h1 style={{ marginTop: "10px" }}>{game.title}</h1>
+        <h1 style={{ marginTop: "10px" }}>
+          {game.title} {game.player && game.player.id === parseInt(localStorage.getItem("gr_user_id")) ? <Link to={editLink}><i className="far fa-edit"></i></Link> : ''}
+        </h1>
         <h3>Designed by {game.designer} in {moment(game.year_released).format('YYYY')}</h3>
         <p style={{ margin: "10px 0px 20px 0px", fontSize: "1.1em" }}>{game.num_of_players} Players | {game.est_time_to_play} minutes to play | Ages {game.age_rec} and up</p>
       <div className="category-grid">
@@ -93,6 +102,11 @@ export const GameDetails = (props) => {
             return <p className="single-review" key={`review--${review.id}`}><em>{review.content}</em></p>
           })
         }
+      </div>
+      <div className="delete-game">
+        {game.player && game.player.id === parseInt(localStorage.getItem("gr_user_id")) 
+          ? <button className="delete-button" onClick={deleteSingleGame}>Delete Post</button> 
+          : ''}
       </div>
     </div>
   );
